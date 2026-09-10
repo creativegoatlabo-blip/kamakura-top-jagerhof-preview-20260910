@@ -12,12 +12,45 @@
 .client-review .hero-content {
   position: absolute;
   top: 50%;
+  inset-inline: 0;
   transform: translateY(-50%);
   padding-block: 0;
 }
 .client-review .hero-films { gap: 0; }
 .client-review .hero-film { border: 0; outline: 0; }
-.client-review .hero h1 { font-size: calc(var(--text-display) / 2); }
+.client-review .hero h1 {
+  font-size: calc(var(--text-display) / 2);
+  text-align: center;
+}
+.client-review .hero h1 > .hero-title-line {
+  width: fit-content;
+  margin-inline: auto;
+  white-space: nowrap;
+  perspective: 900px;
+}
+.client-review .hero-title-glyph {
+  display: inline-block;
+  transform-origin: 50% 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .client-review .hero-title-glyph {
+    animation: title-emerge 1400ms var(--ease-out) backwards;
+    animation-delay: calc(180ms + var(--char) * 75ms);
+  }
+}
+@keyframes title-emerge {
+  from {
+    opacity: 0;
+    filter: blur(7px);
+    transform: translate3d(0, .75em, 0) rotateX(-65deg);
+  }
+  to {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+}
 
 .client-review .intro .intro-photo {
   display: block;
