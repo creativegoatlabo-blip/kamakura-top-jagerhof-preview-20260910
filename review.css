@@ -19,6 +19,52 @@
 .client-review .hero-film { border: 0; outline: 0; }
 .client-review .hero h1 { font-size: calc(var(--text-display) / 2); }
 
+.client-review .intro .intro-photo {
+  display: block;
+  position: absolute;
+  z-index: -1;
+  height: auto;
+  object-fit: cover;
+}
+.client-review .intro-photo--diamond {
+  width: clamp(86px, 18vw, 128px);
+  inset: 40px 8% auto auto;
+  transform: rotate(6deg);
+}
+.client-review .intro-photo--rings {
+  width: clamp(96px, 21vw, 150px);
+  inset: auto auto 48px 8%;
+  transform: rotate(-8deg);
+}
+
+@media (max-width: 63.99rem) {
+  .client-review .intro {
+    padding-top: clamp(210px, 37vw, 280px);
+    padding-bottom: clamp(210px, 39vw, 290px);
+  }
+}
+
+@media (min-width: 64rem) {
+  .client-review .intro .intro-photo--craft {
+    width: 11%;
+    inset: 23% auto auto 3%;
+    transform: rotate(-7deg);
+  }
+  .client-review .intro .intro-photo--workshop {
+    width: 16%;
+    inset: auto 2% 13% auto;
+    transform: rotate(7deg);
+  }
+  .client-review .intro .intro-photo--diamond {
+    width: 12%;
+    inset: 8% 5% auto auto;
+  }
+  .client-review .intro .intro-photo--rings {
+    width: 13%;
+    inset: auto auto 7% 5%;
+  }
+}
+
 @media (max-width: 47.99rem) {
   .client-review .hero h1 { font-size: clamp(1.25rem, 4.4vw, 1.9rem); }
   .client-review .hero-bottom,
