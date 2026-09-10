@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./styles.css">
-<link rel="preload" href="./assets/img__top__fv-img05.jpg" as="image">
+<link rel="preload" href="./assets/video/fv-01.jpg" as="image">
 <script src="./app.js" defer></script>
 </head>
 <body>
@@ -22,12 +22,18 @@
 </header>
 <main id="main">
   <section class="hero" id="top" aria-labelledby="hero-title">
-    <div class="hero-photo" data-parallax="0.15"><img src="./assets/img__top__fv-img05.jpg" width="700" height="1128" alt="手作りした指輪を見つめて笑顔になるお二人" fetchpriority="high"></div>
+    <div class="hero-films" id="hero-films" aria-hidden="true">
+      <video class="hero-film" data-src="./assets/video/fv-01.mp4" poster="./assets/video/fv-01.jpg" width="432" height="768" muted loop playsinline preload="none" disablepictureinpicture tabindex="-1"></video>
+      <video class="hero-film" data-src="./assets/video/fv-02.mp4" poster="./assets/video/fv-02.jpg" width="432" height="768" muted loop playsinline preload="none" disablepictureinpicture tabindex="-1"></video>
+      <video class="hero-film" data-src="./assets/video/fv-03.mp4" poster="./assets/video/fv-03.jpg" width="432" height="768" muted loop playsinline preload="none" disablepictureinpicture tabindex="-1"></video>
+      <video class="hero-film" data-src="./assets/video/fv-04.mp4" poster="./assets/video/fv-04.jpg" width="432" height="768" muted loop playsinline preload="none" disablepictureinpicture tabindex="-1"></video>
+    </div>
     <div class="hero-content">
       <h1 id="hero-title"><span class="reveal">結婚指輪<span class="sans">を</span></span><span class="reveal" style="--delay: 120ms">手作りしよう。</span></h1>
       <div class="hero-aside reveal" style="--delay: 240ms"><a href="#course">結婚指輪・婚約指輪<span class="arrow" aria-hidden="true">↗</span></a><a href="#fashion">ジュエリー・アクセサリー<span class="arrow" aria-hidden="true">↗</span></a><a href="#shops">店舗情報・アクセス<span class="arrow" aria-hidden="true">↗</span></a></div>
     </div>
     <a href="#concept" class="hero-bottom"><span class="scroll-line" aria-hidden="true"></span>SCROLL TO EXPLORE</a>
+    <button class="hero-video-toggle" id="hero-video-toggle" type="button" aria-label="動画を一時停止" aria-controls="hero-films" hidden><span class="hero-video-icon" aria-hidden="true"></span><span class="hero-video-label">動画を一時停止</span></button>
   </section>
   <section class="intro" id="concept" aria-labelledby="concept-title">
     <img class="small-photo" src="./assets/img__top__concept-img01.jpg" width="185" height="300" alt="木槌で指輪の形を整える手元" loading="lazy">
