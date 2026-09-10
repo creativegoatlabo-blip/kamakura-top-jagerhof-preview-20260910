@@ -1,0 +1,20 @@
+@import url('./styles.css');
+
+.client-review .brand-text {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 1.6vw, 1.625rem);
+  font-weight: 500;
+  letter-spacing: .12em;
+  white-space: nowrap;
+}
+
+.client-review .hero { min-height: 32rem; }
+.client-review .hero-films { gap: 0; }
+.client-review .hero-film { border: 0; outline: 0; }
+.client-review .hero h1 { font-size: calc(var(--text-display) / 2); }
+
+@media (max-width: 47.99rem) {
+  .client-review .hero h1 { font-size: clamp(1.25rem, 4.4vw, 1.9rem); }
+  .client-review .hero-bottom,
+  .client-review .hero-video-toggle { bottom: max(30px, env(safe-area-inset-bottom)); }
+}

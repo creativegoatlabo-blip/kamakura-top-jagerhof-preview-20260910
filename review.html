@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>鎌倉彫金工房｜トップページ デザイン案</title>
+<meta name="description" content="鎌倉彫金工房 トップページのデザイン確認用ページ。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./review.css">
+<link rel="preload" href="./assets/video/fv-01.jpg" as="image">
+<script src="./review.js" defer></script>
+</head>
+<body class="client-review">
+<a href="#main" class="skip-link">本文へ</a>
+<header class="header" id="header">
+  <a class="brand brand-text" href="#top" aria-label="鎌倉彫金工房 TOP">鎌倉彫金工房</a>
+</header>
+<main id="main">
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="hero-films" id="hero-films" aria-hidden="true">
+      <video class="hero-film" data-src="./assets/video/fv-01.mp4" poster="./assets/video/fv-01.jpg" width="432" height="768" muted loop playsinline preload="none" disablepictureinpicture tabindex="-1"></video>
+      <video class="hero-film" data-src="./assets/video/fv-02.mp4" poster="./assets/video/fv-02.jpg" width="432" height="768" muted loop playsinline preload="none" disablepictureinpicture tabindex="-1"></video>
+      <video class="hero-film" data-src="./assets/video/fv-03.mp4" poster="./assets/video/fv-03.jpg" width="432" height="768" muted loop playsinline preload="none" disablepictureinpicture tabindex="-1"></video>
+      <video class="hero-film" data-src="./assets/video/fv-04.mp4" poster="./assets/video/fv-04.jpg" width="432" height="768" muted loop playsinline preload="none" disablepictureinpicture tabindex="-1"></video>
+    </div>
+    <div class="hero-content">
+      <h1 id="hero-title"><span class="reveal">結婚指輪<span class="sans">を</span></span><span class="reveal" style="--delay: 120ms">手作りしよう。</span></h1>
+    </div>
+    <a href="#concept" class="hero-bottom"><span class="scroll-line" aria-hidden="true"></span>SCROLL TO EXPLORE</a>
+    <button class="hero-video-toggle" id="hero-video-toggle" type="button" aria-label="動画を一時停止" aria-controls="hero-films" hidden><span class="hero-video-icon" aria-hidden="true"></span><span class="hero-video-label">動画を一時停止</span></button>
+  </section>
+  <section class="intro" id="concept" aria-labelledby="concept-title">
+    <img class="small-photo" src="./assets/img__top__concept-img01.jpg" width="185" height="300" alt="木槌で指輪の形を整える手元" loading="lazy">
+    <img class="small-photo" src="./assets/img__top__concept-img02.jpg" width="360" height="220" alt="工房での指輪作り" loading="lazy">
+    <h2 id="concept-title" class="reveal"><span>作る時間も、</span><span>大切な宝物。</span></h2>
+    <p class="lead reveal">一生に一度の特別な指輪だから、<br>永く愛せるものがいい――。</p>
+    <p class="body-copy reveal">鎌倉彫金工房は、手作り結婚指輪・婚約指輪の工房です。世界にひとつの指輪を手作りして、忘れられない思い出と温かな絆を築く場所。1本の金属から生まれるお二人だけの輝きを思い出とともにお持ち帰りください。</p>
+    <a class="text-link reveal" href="https://kamakura-chokin.com/about/">MORE<span class="arrow" aria-hidden="true">↗</span></a>
+  </section>
+</main>
+</body>
+</html>
