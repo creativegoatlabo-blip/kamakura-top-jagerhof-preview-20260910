@@ -9,6 +9,12 @@
 }
 
 .client-review .hero { min-height: 32rem; }
+.client-review .hero-content {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding-block: 0;
+}
 .client-review .hero-films { gap: 0; }
 .client-review .hero-film { border: 0; outline: 0; }
 .client-review .hero h1 { font-size: calc(var(--text-display) / 2); }

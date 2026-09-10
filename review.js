@@ -1,6 +1,19 @@
 (() => {
   const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
   const header = document.querySelector('#header');
+  const dialog = document.querySelector('#menu-dialog');
+  const menuButton = document.querySelector('#menu-open');
+  menuButton.addEventListener('click', () => {
+    dialog.showModal();
+    menuButton.setAttribute('aria-expanded', 'true');
+    dialog.querySelector('.menu-links a').focus();
+  });
+  dialog.querySelector('.menu-close').addEventListener('click', () => dialog.close());
+  dialog.querySelectorAll('.menu-links a').forEach(link => link.addEventListener('click', () => dialog.close()));
+  dialog.addEventListener('close', () => {
+    menuButton.setAttribute('aria-expanded', 'false');
+    menuButton.focus({ preventScroll: true });
+  });
   document.documentElement.classList.toggle('motion-ready', !motionQuery.matches);
 
   const reveal = new IntersectionObserver(entries => {
@@ -45,7 +58,7 @@
     let playbackEpoch = 0;
 
     function mayPlay() {
-      return wantsPlayback && inView && !document.hidden;
+      return wantsPlayback && inView && !document.hidden && !dialog.open;
     }
 
     function updateToggle() {
@@ -169,6 +182,7 @@
     }, { threshold: 0.01 });
     filmObserver.observe(filmGrid);
     document.addEventListener('visibilitychange', syncPlayback);
+    new MutationObserver(syncPlayback).observe(dialog, { attributes: true, attributeFilter: ['open'] });
     motionQuery.addEventListener('change', () => {
       if (motionQuery.matches) wantsPlayback = false;
       syncPlayback();
