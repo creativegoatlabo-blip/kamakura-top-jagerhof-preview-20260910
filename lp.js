@@ -48,57 +48,49 @@
     update();
   });
 
-  const movieButton = document.querySelector('[data-movie]');
-  movieButton?.addEventListener('click', () => {
-    const frame = document.createElement('iframe');
-    frame.src = movieButton.dataset.movie;
-    frame.title = '鎌倉彫金工房の指輪制作紹介動画';
-    frame.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
-    frame.allowFullscreen = true;
-    movieButton.replaceWith(frame);
-    frame.focus();
-  });
-
-  const video = document.querySelector('.hero video');
-  const toggle = document.querySelector('.video-toggle');
-  if (!video || !toggle) return;
-  let userPaused = reduceMotion.matches || Boolean(navigator.connection?.saveData);
-  let visible = true;
-  let loaded = false;
-  let epoch = 0;
-  const updateButton = () => {
-    const paused = userPaused || video.paused;
-    toggle.dataset.state = paused ? 'paused' : 'playing';
-    toggle.setAttribute('aria-label', paused ? '背景動画を再生する' : '背景動画を一時停止する');
-    toggle.querySelector('.video-label').textContent = paused ? '再生' : '一時停止';
-  };
-  const sync = async () => {
-    const version = ++epoch;
-    if (userPaused || !visible || document.hidden) { video.pause(); updateButton(); return; }
-    if (!loaded) { video.src = video.dataset.src; loaded = true; video.load(); }
+  document.querySelectorAll('[data-loop-video]').forEach(container => {
+    const video = container.querySelector('video');
+    const toggle = container.querySelector('.video-toggle');
+    const videoName = container.dataset.videoName;
+    if (!video || !toggle) return;
+    let userPaused = reduceMotion.matches || Boolean(navigator.connection?.saveData);
+    let visible = !('IntersectionObserver' in window);
+    let loaded = false;
+    let epoch = 0;
+    const updateButton = () => {
+      const paused = userPaused || video.paused;
+      toggle.dataset.state = paused ? 'paused' : 'playing';
+      toggle.setAttribute('aria-label', `${videoName}を${paused ? '再生する' : '一時停止する'}`);
+      toggle.querySelector('.video-label').textContent = paused ? '再生' : '一時停止';
+    };
+    const sync = async () => {
+      const version = ++epoch;
+      if (userPaused || !visible || document.hidden) { video.pause(); updateButton(); return; }
+      if (!loaded) { video.src = video.dataset.src; loaded = true; video.load(); }
+      video.muted = true;
+      try {
+        await video.play();
+        if (version !== epoch && (userPaused || !visible || document.hidden)) video.pause();
+      } catch (error) {
+        if (version === epoch && error.name !== 'AbortError') userPaused = true;
+      }
+      updateButton();
+    };
+    video.defaultMuted = true;
     video.muted = true;
-    try {
-      await video.play();
-      if (version !== epoch && (userPaused || !visible || document.hidden)) video.pause();
-    } catch (error) {
-      if (version === epoch && error.name !== 'AbortError') userPaused = true;
-    }
+    toggle.hidden = false;
+    toggle.addEventListener('click', () => { userPaused = !userPaused; sync(); });
+    video.addEventListener('error', () => { userPaused = true; loaded = false; updateButton(); });
+    video.addEventListener('play', updateButton);
+    video.addEventListener('pause', updateButton);
+    document.addEventListener('visibilitychange', sync);
+    reduceMotion.addEventListener('change', event => { if (event.matches) { userPaused = true; sync(); } });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(entries => {
+        visible = entries[0].isIntersecting;
+        sync();
+      }, { threshold: 0.05 }).observe(video);
+    } else { sync(); }
     updateButton();
-  };
-  video.defaultMuted = true;
-  video.muted = true;
-  toggle.hidden = false;
-  toggle.addEventListener('click', () => { userPaused = !userPaused; sync(); });
-  video.addEventListener('error', () => { userPaused = true; loaded = false; updateButton(); });
-  video.addEventListener('play', updateButton);
-  video.addEventListener('pause', updateButton);
-  document.addEventListener('visibilitychange', sync);
-  reduceMotion.addEventListener('change', event => { if (event.matches) { userPaused = true; sync(); } });
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(entries => {
-      visible = entries[0].isIntersecting;
-      sync();
-    }, { threshold: 0.05 }).observe(video);
-  } else { sync(); }
-  updateButton();
+  });
 })();
