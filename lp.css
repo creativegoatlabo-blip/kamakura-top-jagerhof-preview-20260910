@@ -68,6 +68,7 @@ button[hidden], [hidden] { display: none !important; }
 .point h3 small { display: block; font-size: .6875rem; font-family: var(--font-body); margin-bottom: .75rem; letter-spacing: .08em; }
 .point > .photo { margin-inline: calc(-1 * var(--lp-gutter)); }
 .point > .photo img { aspect-ratio: 4/3; object-fit: cover; }
+#memories > .photo img { aspect-ratio: auto; height: auto; object-fit: contain; }
 .point:nth-of-type(even) > .photo { margin-inline: 0 calc(-1 * var(--lp-gutter)); }
 .gallery { margin: 2rem calc(-1 * var(--lp-gutter)) 0; }
 .gallery-track { display: flex; gap: 12px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-padding-inline: var(--lp-gutter); padding-inline: var(--lp-gutter); }
