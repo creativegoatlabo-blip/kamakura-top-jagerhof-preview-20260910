@@ -40,9 +40,11 @@ button[hidden], [hidden] { display: none !important; }
 .photo { overflow: clip; }
 .photo img { width: 100%; }
 .hero { position: relative; min-height: 620px; height: min(850px, 100svh); isolation: isolate; overflow: clip; color: var(--color-paper-light); background: var(--color-green); }
-.hero video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -3; }
-.hero::before { content: ''; position: absolute; inset: 0; z-index: -2; background: var(--color-overlay); }
-.hero::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, var(--color-overlay-dark), var(--color-clear) 28%, var(--color-overlay) 48%, var(--color-overlay-dark)); }
+.hero video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+.hero::before { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: var(--color-overlay); }
+.hero::after { content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none; background: linear-gradient(180deg, var(--color-overlay-dark), var(--color-clear) 28%, var(--color-overlay) 48%, var(--color-overlay-dark)); }
+.hero .masthead, .hero .hero-copy, .hero .hero-scroll { z-index: 3; }
+.video-debug { position: fixed; z-index: 100; left: 8px; bottom: 90px; max-width: calc(100vw - 16px); padding: 10px 14px; background: #111e; color: #fff; font: 12px/1.7 monospace; white-space: pre-wrap; pointer-events: none; }
 .masthead { position: absolute; top: 28px; inset-inline: 24px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 .brand { font: 400 1.1875rem/1.5 var(--font-display); letter-spacing: .12em; white-space: nowrap; }
 .header-reserve { font-size: .6875rem; letter-spacing: .08em; min-height: 44px; display: flex; align-items: center; gap: 8px; white-space: nowrap; }

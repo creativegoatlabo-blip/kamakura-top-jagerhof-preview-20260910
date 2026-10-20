@@ -1,6 +1,52 @@
 (() => {
   'use strict';
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const heroVideo = document.querySelector('.hero video');
+  if (heroVideo) {
+    const hero = heroVideo.closest('.hero');
+    let pending = false;
+    const inView = () => {
+      const rect = hero.getBoundingClientRect();
+      return rect.bottom > 0 && rect.top < innerHeight;
+    };
+    const startHero = () => {
+      if (document.hidden || !inView()) { heroVideo.pause(); return; }
+      if (pending || !heroVideo.paused) return;
+      heroVideo.defaultMuted = true;
+      heroVideo.muted = true;
+      pending = true;
+      heroVideo.play().then(() => {
+        delete heroVideo.dataset.playError;
+        if (document.hidden || !inView()) heroVideo.pause();
+      }).catch(error => {
+        if (error.name === 'AbortError') return;
+        heroVideo.dataset.playError = error.name;
+        console.warn('FV video playback:', error.name, error.message);
+      }).finally(() => { pending = false; });
+    };
+    // FVはHTMLから先に読み込み、再生失敗を利用者の停止操作として扱わない。
+    ['loadeddata', 'canplay'].forEach(event => heroVideo.addEventListener(event, startHero));
+    document.addEventListener('visibilitychange', startHero);
+    window.addEventListener('pageshow', startHero);
+    ['touchend', 'click'].forEach(event => hero.addEventListener(event, startHero, { passive: true }));
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(startHero, { threshold: 0.05 }).observe(hero);
+    }
+    if (new URLSearchParams(location.search).get('videoDebug') === '1') {
+      const status = document.createElement('output');
+      status.className = 'video-debug';
+      status.setAttribute('aria-label', 'FV動画の確認情報');
+      document.body.append(status);
+      const showStatus = () => {
+        const state = heroVideo.error ? '動画エラー' : heroVideo.readyState < 2 ? '読込中' : heroVideo.paused ? '停止' : '再生中';
+        status.textContent = `FV v4 / H.264 Level 3.1\n状態: ${state} / ${heroVideo.currentTime.toFixed(1)}秒\n読込: ${heroVideo.readyState} / 通信: ${heroVideo.networkState}\n再生エラー: ${heroVideo.dataset.playError || 'なし'}\n動画エラー: ${heroVideo.error ? `${heroVideo.error.code} ${heroVideo.error.message}` : 'なし'}`;
+      };
+      ['playing', 'pause', 'error', 'loadedmetadata'].forEach(event => heroVideo.addEventListener(event, showStatus));
+      setInterval(showStatus, 500);
+      showStatus();
+    }
+    startHero();
+  }
   const reveals = [...document.querySelectorAll('.reveal')];
   if ('IntersectionObserver' in window && !reduceMotion.matches) {
     const observer = new IntersectionObserver(entries => {
