@@ -175,3 +175,75 @@ button[hidden], [hidden] { display: none !important; }
   .reserve-button { transition: background-color var(--dur-short) var(--ease-out), transform var(--dur-short) var(--ease-out); }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .hero-glyph, .reveal { animation: none; opacity: 1; transform: none; transition: none; } }
+
+/* 2026-10-20：ローカルのフィードバック確認版 */
+.point > h3 { margin-top: 0; }
+.point > .copy + .photo,
+.point > .copy + .gallery { margin-top: 2rem; }
+.point:nth-of-type(even) > .photo { margin-inline: calc(-1 * var(--lp-gutter)); }
+
+/* 二組の写真列を同じ幅で並べ、継ぎ目なくゆっくり流す。 */
+.staff-marquee { margin: 1.75rem calc(-1 * var(--lp-gutter)) 0; }
+.staff-marquee-track { display: flex; overflow-x: auto; scrollbar-width: none; }
+.staff-marquee-track::-webkit-scrollbar { display: none; }
+.staff-marquee-set { display: flex; flex-shrink: 0; gap: 12px; padding-right: 12px; }
+.staff-marquee-set figure { flex: 0 0 138px; width: 138px; height: 217px; overflow: clip; }
+.staff-marquee-set img { width: 100%; aspect-ratio: 190/339; object-fit: cover; }
+.staff-marquee.is-ready .staff-marquee-track { overflow: clip; }
+.staff-marquee.is-ready .staff-marquee-set { animation: staff-drift 176s linear infinite; }
+.staff-marquee.is-paused .staff-marquee-set,
+.staff-marquee.is-offscreen .staff-marquee-set { animation-play-state: paused; }
+@keyframes staff-drift { to { transform: translateX(-100%); } }
+
+/* 縦型リールを切り取らず、テロップまで表示する。 */
+.movie-frame { aspect-ratio: 9/16; }
+.movie-frame .video-toggle { bottom: 12px; background: rgba(20,38,29,.88); }
+.achievements-pair { margin-top: 2.75rem; }
+.achievement-photo { margin-top: 2.5rem; margin-bottom: 0; }
+.count-number { display: inline-block; min-width: 4.7ch; font-variant-numeric: tabular-nums; }
+
+/* お客さまごとに写真を固定し、その上を本文と指輪写真が流れる。 */
+.voices { padding: 5.5rem 0 0; }
+.voices > .section-title { padding-inline: var(--lp-gutter); margin-bottom: 3rem; }
+.voice { display: block; position: relative; isolation: isolate; padding: 0; border: 0; }
+.voice + .voice { margin-top: 0; }
+.voice-stage { position: sticky; top: 0; height: calc(100svh - 78px); min-height: min(26rem, 80svh); overflow: clip; z-index: 0; }
+.voice-stage > img { width: 100%; height: 100%; object-fit: cover; object-position: 57% center; }
+#voice-01 .voice-stage > img { object-position: 66% center; }
+#voice-02 .voice-stage > img { object-position: 64% center; }
+#voice-03 .voice-stage > img { object-position: 58% center; }
+.voice-stage::after { content: ''; position: absolute; inset: 0; background: var(--color-paper-light); opacity: var(--voice-wash, 0); }
+.voice-content { position: relative; z-index: 1; padding: 3rem var(--lp-gutter) 5rem; }
+.voice-content h3 { font-size: clamp(1.375rem, 5.8vw, 1.7rem); line-height: 1.85; letter-spacing: .04em; margin-bottom: 2rem; }
+.voice-content p { font-size: .875rem; line-height: 2.2; }
+.voice-content cite { font-size: .8125rem; margin-top: 1.5rem; }
+.voice-ring { width: 78%; margin: 2.5rem auto 0; }
+.voice-ring img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+.voice-ring figcaption { margin-top: .875rem; text-align: center; font-size: .6875rem; letter-spacing: .04em; }
+
+/* 店舗ごとに内装を主役にする。小さな外観写真から、空間を選べる紹介へ。 */
+.store-showcase { display: block; }
+.store-showcase + .store-showcase { margin-top: 4rem; }
+.store-showcase h3 { margin: 0 0 1rem; font: 400 1.75rem/1.6 var(--font-display); letter-spacing: .06em; }
+.store-intro { margin-bottom: 1.75rem; font-size: .875rem; line-height: 2; }
+.store-gallery { margin: 0 calc(-1 * var(--lp-gutter)) 1.75rem; }
+.store-gallery-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
+.store-gallery-track::-webkit-scrollbar { display: none; }
+.store-gallery-track figure { position: relative; flex: 0 0 100%; min-width: 0; scroll-snap-align: start; }
+.store-gallery-track img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+.store-thumbnails { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; margin-top: 12px; padding-inline: var(--lp-gutter); }
+.store-thumbnails button { display: block; min-width: 0; padding: 0 0 6px; border: 0; border-bottom: 2px solid transparent; background: none; text-align: center; }
+.store-thumbnails img { width: 100%; aspect-ratio: 4/3; object-fit: cover; opacity: .58; }
+.store-thumbnails button[aria-pressed='true'] { border-color: var(--color-green); }
+.store-thumbnails button[aria-pressed='true'] img { opacity: 1; }
+.store-showcase .store-name { font-size: .8125rem; margin-bottom: .625rem; }
+.store-showcase .store-address { font-size: .75rem; line-height: 2; }
+@media (prefers-reduced-motion: reduce) {
+  .staff-marquee.is-ready .staff-marquee-track { overflow-x: auto; }
+  .staff-marquee.is-ready .staff-marquee-set { animation: none; }
+  .staff-marquee-set[aria-hidden='true'] { display: none; }
+  .voice-stage { position: relative; height: auto; min-height: 0; }
+  .voice-stage > img { height: auto; }
+  .voice-stage::after { display: none; }
+  .voice-content { background: var(--color-paper-light); }
+}
