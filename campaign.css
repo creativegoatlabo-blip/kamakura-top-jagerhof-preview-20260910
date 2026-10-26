@@ -39,7 +39,7 @@
 .cp-terms__body p + p { margin-top: .75rem; }
 .cp-terms__body ul { padding-left: 1.2em; margin: .5rem 0 .875rem; }
 .cp-terms__body li + li { margin-top: .35rem; }
-.sticky-campaign { margin: 0 0 8px; font-size: 12px; line-height: 1.5; letter-spacing: 0; text-align: center; color: var(--color-green); }
+.sticky-campaign { margin: 0 0 8px; font-size: 12px; line-height: 1.5; letter-spacing: 0; text-align: center; color: #000; }
 @media (min-width: 480px) {
   .cp-notice__body { padding: 15px 17px 17px; }
   .cp-notice h3 { font-size: 1.0625rem; }
