@@ -249,3 +249,7 @@ button[hidden], [hidden] { display: none !important; }
   .voice-stage::after { display: none; }
   .voice-content { background: var(--color-paper-light); }
 }
+
+/* 鍛造の制作風景を、LPのコンテンツ幅いっぱいに見せる。 */
+#forging-point > .photo { width: auto; margin-inline: calc(-1 * var(--lp-gutter)); }
+#forging-point > .photo img { width: 100%; height: auto; aspect-ratio: auto; object-fit: contain; }

@@ -1,0 +1,48 @@
+/* ローカル比較提案。LPの書体・紙色・深緑・予約ボタンを継承する。 */
+.cp-notice { color: var(--color-ink); margin-bottom: 1.5rem; }
+.cp-notice__audience { font-size: .6875rem; letter-spacing: .08em; margin-bottom: .625rem; text-align: center; }
+.cp-notice__card { display: grid; grid-template-columns: 35% minmax(0, 1fr); border-block: 1px solid var(--color-line); background: var(--color-paper); }
+.cp-notice__photo { overflow: hidden; margin: 0; }
+.cp-notice__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 70% 48%; }
+.cp-notice__body { min-width: 0; padding: 12px 13px 14px; }
+.cp-notice__period { display: block; color: var(--color-green); font-size: .5625rem; line-height: 1.7; white-space: nowrap; letter-spacing: .015em; }
+.cp-notice__lead { display: block; font-size: .625rem; letter-spacing: .04em; margin-top: .375rem; line-height: 1.7; }
+.cp-notice h3 { font-size: .9375rem; line-height: 1.5; letter-spacing: .025em; margin: .1875rem 0 .5rem; }
+.cp-notice h3 span { display: block; white-space: nowrap; }
+.cp-notice__value { display: flex; align-items: baseline; gap: 3px; line-height: 1.3; white-space: nowrap; color: var(--color-green); }
+.cp-notice__value small { font-size: .625rem; }
+.cp-notice__value strong { font: 400 1.625rem/1 var(--font-latin); letter-spacing: -.02em; }
+.cp-notice__note { font-size: .625rem; line-height: 1.8; margin-top: .625rem; }
+.cp-last { margin-top: 2.75rem; }
+.cp-feature { background: var(--color-green); color: var(--color-paper-light); }
+.cp-feature__photo { position: relative; margin: 0; }
+.cp-feature__photo img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+.cp-feature__period { position: absolute; left: var(--lp-gutter); top: 1.5rem; font-size: .625rem; letter-spacing: .05em; line-height: 1.7; background: var(--color-paper-light); color: var(--color-ink); padding: .5rem .875rem; }
+.cp-feature__body { padding: 2.5rem var(--lp-gutter) 3rem; }
+.cp-feature__audience { font-size: .6875rem; letter-spacing: .08em; margin-bottom: 1rem; }
+.cp-feature h2 { font-size: 1.625rem; line-height: 1.75; letter-spacing: .035em; }
+.cp-feature h2 span { display: block; }
+.cp-feature__name { font-size: .8125rem; line-height: 1.9; margin-top: 1.375rem; }
+.cp-feature__name span { display: block; }
+.cp-feature__benefit { display: flex; align-items: baseline; gap: 4px; line-height: 1.2; margin-top: 1rem; }
+.cp-feature__benefit small { font-size: .75rem; }
+.cp-feature__benefit strong { font: 400 2.875rem/1 var(--font-latin); }
+.cp-feature__stones { font-size: .6875rem; margin-top: .75rem; letter-spacing: .04em; }
+.cp-feature__note { font-size: .625rem; line-height: 1.9; margin: 1.125rem 0 1.5rem; }
+.cp-feature .reserve-button { font-size: .8125rem; }
+.cp-terms { margin: 1rem 0 0; font-size: .625rem; line-height: 1.9; }
+.cp-terms summary { cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; min-height: 44px; border-block: 1px solid currentColor; padding-block: .5rem; letter-spacing: .04em; }
+.cp-terms summary::-webkit-details-marker { display: none; }
+.cp-terms summary::after { content: '+'; font-size: 1rem; }
+.cp-terms[open] summary::after { content: '−'; }
+.cp-terms__body { padding: 1rem 0 .25rem; }
+.cp-terms__body p + p { margin-top: .75rem; }
+.cp-terms__body ul { padding-left: 1.2em; margin: .5rem 0 .875rem; }
+.cp-terms__body li + li { margin-top: .35rem; }
+.sticky-campaign { margin: 0 0 8px; font-size: 12px; line-height: 1.5; letter-spacing: 0; text-align: center; color: var(--color-green); }
+@media (min-width: 480px) {
+  .cp-notice__body { padding: 15px 17px 17px; }
+  .cp-notice h3 { font-size: 1.0625rem; }
+  .cp-notice__period { font-size: .625rem; }
+  .cp-notice__lead { font-size: .6875rem; }
+}
