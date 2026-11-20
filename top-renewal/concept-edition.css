@@ -1,0 +1,132 @@
+.client-review .concept-edition {
+  display: grid;
+  place-items: center;
+  min-height: max(860px, 100lvh);
+  padding-block: clamp(168px, 14vw, 216px);
+}
+
+.concept-message {
+  width: min(100%, 49vw, 44rem);
+  position: relative;
+  z-index: 1;
+}
+
+.concept-edition h2 {
+  font-size: 32px;
+  line-height: 2.2;
+  letter-spacing: .10em;
+}
+
+.concept-edition p {
+  margin-block-start: clamp(43px, 5vw, 72px);
+  font-family: var(--font-display);
+  font-size: 17px;
+  line-height: 2.35;
+  letter-spacing: .08em;
+}
+.concept-phrase { display: inline-block; }
+
+.concept-photo {
+  position: absolute;
+  z-index: 0;
+  width: var(--photo-width);
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+}
+
+.concept-photo img {
+  position: absolute;
+  top: -18%;
+  left: 0;
+  width: 100%;
+  height: 136%;
+  object-fit: cover;
+}
+
+.concept-photo--craft {
+  --photo-width: clamp(100px, 12vw, 184px);
+  inset: 15% auto auto 7%;
+}
+
+.concept-photo--ring {
+  --photo-width: clamp(105px, 13vw, 192px);
+  inset: 8% 8% auto auto;
+}
+
+.concept-photo--workshop {
+  --photo-width: clamp(125px, 15vw, 225px);
+  inset: auto auto 8% 9%;
+}
+
+.concept-photo--hospitality {
+  --photo-width: clamp(110px, 13vw, 193px);
+  inset: auto 5.5% 13% auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .opening-motion .concept-photo {
+    opacity: var(--concept-photo-opacity, 1);
+  }
+  .opening-motion .concept-photo img {
+    transform: translate3d(0, clamp(-13%, var(--concept-crop-y, 0px), 13%), 0);
+    will-change: transform;
+  }
+  .motion-ready .concept-block {
+    transition: opacity 1750ms cubic-bezier(.33, 0, .22, 1),
+      transform 1750ms cubic-bezier(.33, 0, .22, 1);
+    transition-delay: 420ms;
+  }
+  .motion-ready p.concept-block { transition-delay: 640ms; }
+  .motion-ready p.concept-block:last-of-type { transition-delay: 860ms; }
+  .motion-ready .concept-edition .text-link { transition-delay: 1050ms; }
+  .motion-ready .concept-edition .text-link:focus-visible { transition: none; }
+  .motion-ready .concept-block:not(.seen):not(:focus) {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+@media (max-width: 63.99rem) {
+  .client-review .concept-edition {
+    min-height: 100lvh;
+    padding-block: clamp(222px, 30vw, 272px) clamp(229px, 32vw, 288px);
+  }
+  .concept-message { width: min(100%, 38rem); }
+  .concept-edition h2 { font-size: 30px; }
+  .concept-photo--craft {
+    --photo-width: clamp(83px, 15vw, 135px);
+    inset: 49px auto auto 8%;
+  }
+  .concept-photo--ring {
+    --photo-width: clamp(85px, 15vw, 133px);
+    inset: 22px 10% auto auto;
+  }
+  .concept-photo--workshop {
+    --photo-width: clamp(94px, 17vw, 146px);
+    inset: auto auto 26px 13%;
+  }
+  .concept-photo--hospitality {
+    --photo-width: clamp(83px, 15vw, 132px);
+    inset: auto 8% 62px auto;
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .concept-edition h2 {
+    font-size: 24px;
+  }
+  .concept-edition p {
+    font-size: 16px;
+    margin-block-start: 43px;
+  }
+}
+
+@media (max-width: 374px) {
+  .concept-edition p { font-size: 15px; letter-spacing: .06em; }
+}
+
+@media (max-width: 359px) {
+  .client-review .concept-edition { padding-inline: 20px; }
+  .concept-edition h2 { font-size: 22px; }
+  .concept-edition p { font-size: 14px; }
+}

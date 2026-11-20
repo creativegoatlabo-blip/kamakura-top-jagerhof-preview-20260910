@@ -1,0 +1,166 @@
+.client-review .brand-lockup img { width: clamp(170px, 14vw, 208px); }
+.menu-top img { max-width: min(210px, 62vw); }
+.menu-motion { max-width: 900px; margin: 16px auto 0; }
+.menu-motion button {
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 13px;
+  text-decoration: underline;
+  text-underline-offset: .28em;
+}
+.client-review .hero-edition { background: #20241e; }
+.opening-backdrop .hero-panel { position: relative; min-width: 0; min-height: 0; overflow: hidden; }
+.opening-backdrop .hero-film { background: #20241e; }
+.opening-backdrop .hero-panel--hospitality .hero-film { object-position: 47% center; }
+.opening-backdrop .hero-panel--craft .hero-film { object-position: 60% 55%; }
+.opening-backdrop .hero-panel--making .hero-film { object-position: 50% 54%; }
+.opening-backdrop .hero-panel--finished .hero-film { object-position: 54% center; }
+.opening-backdrop .hero-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 25, 20, var(--shade, .24));
+  pointer-events: none;
+}
+.opening-backdrop .hero-panel--hospitality { --shade: .21; }
+.opening-backdrop .hero-panel--craft { --shade: .02; }
+.opening-backdrop .hero-panel--making { --shade: .26; }
+.opening-backdrop .hero-panel--finished { --shade: .26; }
+.opening-backdrop::before {
+  background:
+    radial-gradient(ellipse 43% 29% at 50% 54%, rgba(15, 19, 15, .45), transparent 100%),
+    linear-gradient(180deg, rgba(12, 18, 14, .53), transparent 24%, transparent 70%, rgba(12, 18, 14, .42));
+}
+.client-review .hero-edition .hero-content {
+  top: 53%;
+  padding-inline: 20px;
+  text-align: center;
+  color: #fffdf7;
+  text-shadow: 0 2px 18px rgba(12, 17, 13, .7);
+}
+.client-review .hero-edition h1 {
+  font-size: clamp(36px, 4vw, 62px);
+  line-height: 1.47;
+  font-weight: 400;
+  letter-spacing: .09em;
+}
+.client-review .hero-edition h1 > span { display: inline-block; margin: 0; white-space: nowrap; }
+.hero-edition .hero-bottom { letter-spacing: .11em; }
+.hero-edition .scroll-line { animation: none; height: 36px; }
+
+.background-video-start {
+  position: absolute;
+  z-index: 2;
+  min-height: 44px;
+  padding-inline: 13px;
+  border: 1px solid var(--color-paper-light);
+  color: var(--color-paper-light);
+  background: var(--color-overlay-dark);
+  font-size: 12px;
+}
+.background-video-start[hidden] { display: none; }
+.hero-edition .background-video-start {
+  inset: auto var(--space-gutter) max(38px, env(safe-area-inset-bottom)) auto;
+}
+.visit-frame .background-video-start {
+  inset: 16px max(12%, 24px) auto auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .motion-ready .hero-edition .hero-content {
+    animation: hero-copy-appear 720ms 570ms ease-out both;
+  }
+}
+@keyframes hero-copy-appear {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@media (max-width: 63.99rem) {
+  .opening-backdrop::before {
+    background:
+      linear-gradient(180deg, rgba(12, 18, 14, .47), transparent 20%, rgba(12, 18, 14, .16) 36%, rgba(12, 18, 14, .55) 52%, transparent 74%, rgba(12, 18, 14, .36));
+  }
+  .client-review .hero-edition .hero-content { top: 51%; }
+  .opening-backdrop .hero-panel--craft .hero-film { object-position: center 73%; }
+  .opening-backdrop .hero-panel--making .hero-film { object-position: center 60%; }
+}
+@media (max-width: 47.99rem) {
+  .client-review .brand-lockup img { width: 162px; }
+  .client-review .hero-edition .hero-content { padding-inline: 16px; }
+  .client-review .hero-edition h1 { font-size: clamp(26px, 7vw, 42px); letter-spacing: .055em; }
+}
+
+
+/* Four supplied scenes; keep each vertical original's central action in frame. */
+.opening-backdrop .hero-panel--hospitality .hero-film { object-position: 59% center; }
+.opening-backdrop .hero-panel--craft .hero-film { object-position: 56% 54%; }
+.opening-backdrop .hero-panel--making .hero-film { object-position: 59% center; }
+.opening-backdrop .hero-panel--finished .hero-film { object-position: 53% center; }
+
+/* One backdrop carries the four films into the green Concept section. */
+.opening-story {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  background: var(--color-green);
+  --opening-height: max(calc(100svh - var(--site-notice-height, 0px)), 32rem);
+}
+.opening-backdrop {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  width: 100%;
+  height: var(--opening-height);
+  overflow: clip;
+  pointer-events: none;
+  background: var(--color-green);
+}
+.opening-backdrop .hero-films { z-index: 0; }
+.hero-composite-film,
+.hero-composite-motion {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-composite-film[hidden],
+.hero-composite-motion[hidden] { display: none; }
+.opening-backdrop::before {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+}
+.client-review .opening-story .hero-edition { z-index: 1; height: var(--opening-height); background: transparent; }
+.opening-story .concept-edition { z-index: 1; }
+.opening-story .hero-edition::after { display: none; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .opening-motion .opening-backdrop {
+    --backdrop-height: max(100lvh, var(--opening-height));
+    position: sticky;
+    height: var(--backdrop-height);
+    margin-bottom: calc(-1 * var(--backdrop-height));
+  }
+  .opening-motion .opening-backdrop::after {
+    content: '';
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    background: var(--color-green);
+    opacity: var(--opening-green, 0);
+  }
+  .client-review .opening-motion .concept-edition { background: transparent; }
+  .opening-motion .hero-edition h1 {
+    opacity: var(--opening-copy-opacity, 1);
+    transform: translate3d(0, var(--opening-copy-y, 0px), 0);
+  }
+  .opening-motion .hero-bottom:not(:focus-visible) {
+    opacity: var(--opening-copy-opacity, 1);
+  }
+}
